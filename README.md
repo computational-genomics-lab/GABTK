@@ -1,4 +1,4 @@
-# gabtk
+# GABTK
 Genome Assembly Benchmark Toolkit
 
 Installation Instructions
@@ -10,8 +10,8 @@ To provide an easier way to install, we provide a miniconda based installer.
 Installation also requires **pre-instaled** ``git``, ``gcc``, ``cpp`` and ``zlib1g-dev``.
 
     
-    git clone https://github.com/sarangian/gabtk.git
-    cd gabtk
+    git clone https://github.com/computational-genomics-lab/GABTK.git
+    cd GABTK
     chmod 755 install.sh
     ./install.sh
 
