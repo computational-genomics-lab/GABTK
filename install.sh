@@ -7,7 +7,7 @@ fi
 
 # Name of application to install
 echo ""
-echo -e "\e[1;34mChecking dependencies for GABTk installation ...\e[0m"  2>&1 | tee -a $LOGFILE
+echo -e "\e[1;34mChecking dependencies for GABTK installation ...\e[0m"  2>&1 | tee -a $LOGFILE
 echo ""
 
 sleep 2s;
@@ -68,9 +68,9 @@ THIS_DIR=$(DIRNAME=$(dirname "$0"); cd "$DIRNAME"; pwd)
 BASE_DIR=$(pwd)
 chmod 755 $BASE_DIR/*.sh
 #chmod 755 $BASE_DIR/*.py
-UTILITY=$BASE_DIR/gabtk/tasks/utility
-ASSEMBLY=$BASE_DIR/gabtk/tasks/assembly
-READCleaning=$BASE_DIR/gabtk/tasks/readCleaning
+UTILITY=$BASE_DIR/GABTK/tasks/utility
+ASSEMBLY=$BASE_DIR/GABTK/tasks/assembly
+READCleaning=$BASE_DIR/GABTK/tasks/readCleaning
 
 echo "export PATH=\"$UTILITY\":\$PATH" >> ~/.bashrc 
 echo "export PATH=\"$ASSEMBLY\":\$PATH" >> ~/.bashrc 
@@ -83,7 +83,7 @@ ENVFILE=$BASE_DIR/.environment.yml
 
 THIS_FILE=$(basename "$0")
 THIS_PATH="$THIS_DIR/$THIS_FILE"
-PREFIX=$HOME/GABTk/
+PREFIX=$HOME/GABTK/
 
 sleep 2s;
 
@@ -152,11 +152,11 @@ if [ ! -d $PREFIX ]; then
 fi
 #cd $PREFIX
 
-AppName="GABTk"
+AppName="GABTK"
 # Set your project's install directory name here
 InstallDir=$PREFIX
 #EntryPoint="YourApplicationName"
-EntryPoint="GABTk"
+EntryPoint="GABTK"
 
 echo
 echo "Installing $AppName"  
