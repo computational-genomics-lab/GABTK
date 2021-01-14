@@ -45,7 +45,7 @@ class correctPAC(luigi.Task):
 	
 	def requires(self):
 		if self.pre_process_reads=="yes":
-			return [filtlong(seq_platforms="pac",sampleName=i)
+			return [filtlong(platform="pac",sampleName=i)
 				 for i in [line.strip()
 						   for line in
 						   open((os.path.join(os.getcwd(), "sample_list", "pac_samples.lst")))]]
