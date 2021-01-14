@@ -44,7 +44,7 @@ class correctONT(luigi.Task):
 	
 	def requires(self):
 		if self.pre_process_reads=="yes":
-			return [filtlong(seq_platforms="ont",sampleName=i)
+			return [filtlong(platform="ont",sampleName=i)
 				 for i in [line.strip()
 						   for line in
 						   open((os.path.join(os.getcwd(), "sample_list", "ont_samples.lst")))]]
