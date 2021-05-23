@@ -44,11 +44,6 @@ from tasks.assembly import wtdbg2
 from tasks.assembly import miniasm
 from tasks.assembly import falcon
 
-from tasks.assembly import skesa
-from tasks.assembly import haslr
-from tasks.assembly import unicycler
-from tasks.assembly import platanus
-from tasks.assembly import redundans
 
 
 
