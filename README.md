@@ -27,15 +27,11 @@ List of commands
 ================
 
 Prepare a Project for Benchmark Analysis
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The directory from which which the ``benchmark.py`` script will be fired, must contain the ``luigi.cfg`` template file
 
 
 ``luigi.cfg`` template file
 ----------------------------
-
-.. code-block:: none
-
 
 	[core]
 	default-scheduler-port:0000
@@ -64,8 +60,6 @@ The directory from which which the ``benchmark.py`` script will be fired, must c
 configureProject
 -----------------
 
-.. code-block:: none
-
 
     benchmark.py configureProject --help
 
@@ -87,8 +81,6 @@ The   configureProject command will generate the (1) ``luigi.cfg`` file (2) outD
 
 Example of a ``luigi.cfg`` file generated using configureProject command
 
-
-.. code-block:: none
 
 	[core]
 	default-scheduler-port:8082
@@ -116,13 +108,10 @@ Example of a ``luigi.cfg`` file generated using configureProject command
 
 
 QC Analysis
-^^^^^^^^^^^
-
+===========
 
 rawReadsQC
 -----------
-.. code-block:: none
-
 
     benchmark.py rawReadsQC --help
 
@@ -156,8 +145,6 @@ rawReadsQC
 cleanReads
 -----------
 
-.. code-block:: none
- 
  	benchmark.py cleanReads <arguments> --local-scheduler
 
 	 arguments            	  	type 	Description
@@ -246,9 +233,6 @@ cleanReads
 correctPAC
 ----------
 
-.. code-block:: none
-
-
 	benchmark.py correctPAC <arguments> --local-scheduler
 
 	Mandetory Arguments
@@ -264,8 +248,6 @@ correctPAC
 correctONT
 ----------
 
-.. code-block:: none
-
 
 	Mandetory Arguments
 	--pre-process-reads   str   Choose [yes or no]
@@ -274,49 +256,10 @@ correctONT
 
 
 Genome Assembly
-^^^^^^^^^^^^^^^
-
-skesa
------
-
-.. code-block:: none
-
- 	Note: skesa is used for assembling prokaryotic Illumina paired-end reads only
-
-
- 	Mandetory Arguments
- 	--pre-process-reads   	str   	Choose [yes or no]
-
-	 Optional Argument
-	 --kmer 		int 	Minimal Kmer length for assembly
-				Default: 21
- 	--steps 		int     Number of assembly iterations from minimal to maximal kmer length in reads
-                		Default: 11
-
-	 --min-contig-length	int 	Exclude contigs from the FASTA file which are shorter than this length. 
-                		Default: 200
-
-**Example: run skesa assembler**
-
-.. code-block:: none
-
-	case 1: running skesa with out read cleaning
-
-	benchmark.py skesa --pre-process-read no --min-contig-length 500 --local-scheduler
-
-	
-	case 2: running skesa with read cleaning parameters
-
-	benchmark.py skesa \
-			--pre-process-read yes \
-			--min-contig-length 500 \
-			--cleanFastq-min-average-quality 20 \
-			--local-scheduler
+===============
 
 lightAssembler
 ---------------
-
-.. code-block:: none
 
 	 Note: lightAssembler is used for assembling Illumina paired-end reads only
 
@@ -329,7 +272,6 @@ lightAssembler
 
 	**Example: run light assembler**
 
-.. code-block:: none
 
 	case 1: running lightassembler with out read cleaning
 
@@ -346,7 +288,6 @@ lightAssembler
 discovardenovo
 ---------------
 
-.. code-block:: none
 
  Note: discovardenovo is used for assembling Illumina paired-end reads only
 
@@ -358,7 +299,6 @@ discovardenovo
 
  **Example: run discovardenovo assembler**
 
-.. code-block:: none
 
 	case 1: running discovardenovo with out read cleaning
 
@@ -376,7 +316,6 @@ discovardenovo
 sparseAssembler
 ---------------
 
-.. code-block:: none
 
 	Note: sparseAssembler is used for assembling Illumina paired-end or paired-end with mate-pair reads only
 
@@ -390,7 +329,6 @@ sparseAssembler
 
 **Example: run sparse assembler**
 
-.. code-block:: none
 
 	case 1: running sparseAssembler with out read cleaning
 
@@ -408,7 +346,6 @@ sparseAssembler
 spades
 -------
 
-.. code-block:: none
 
  Mandetory Arguments
  --pre-process-reads  str   	Choose [yes or no]
@@ -428,7 +365,6 @@ spades
 
 **Example: run spades assembler**
 
-.. code-block:: none
 
 	case 1: running spades with out read cleaning
 
@@ -443,72 +379,31 @@ spades
 			--cleanFastq-min-average-quality 20 \
 			--local-scheduler
 
-unicycler
----------
-
-.. code-block:: none
-
- Mandetory Arguments
- --pre-process-reads str   	Choose [yes or no]
-
- --seq-platforms     str   	Choose [pe:paired-end, 
-				pe-ont: paired-end and nanopore
-				pe-pac: paired-end and pacbio]
-
- Optional Argument
- --mode 		str 	Choose From[
- 				normal: moderate contig size and misassembly rate
- 				conservative: smaller contigs lowest misassembly rate
-                   		bold: longest contigs higher misassembly rate]
-
- --min-contig-length	int 	Exclude contigs from the FASTA file which are shorter
-                        	than this length. 
-                        	Default: 200
-
-**Example: run unicycler assembler**
-
-.. code-block:: none
-
-	case 1: running unicycler with out read cleaning
-
-	benchmark.py unicycler --pre-process-read no  --seq-platforms pe-pac --local-scheduler
-
-	case 2: running unicycler with read cleaning parameters
-
-	benchmark.py unicycler \
-			--pre-process-read yes \
-			--seq-platforms pe-pac \
-			--mode normal \
-			--cleanFastq-min-average-quality 20 \
-			--local-scheduler
-
 
 masurca
 -------
 
-.. code-block:: none
 
- Mandetory Arguments
- --pre-process-reads  	str   	Choose [yes or no]
+ 	Mandetory Arguments
+	--pre-process-reads  	str   	Choose [yes or no]
 
- --seq-platforms        str   	Choose [pe:	paired-end, 
+	--seq-platforms        str   	Choose [pe:	paired-end, 
 					pe-mp:	paired-end and mate-pair
 					pe-ont: paired-end and nanopore
 					pe-pac: paired-end and pacbio]
 
- --pe-frag-mean   	float   	Illumina paired-end fragment mean
+ 	--pe-frag-mean   	float   	Illumina paired-end fragment mean
 
- --pe-frag-sd	  	float   	Illumina paired-end fragment sd
+ 	--pe-frag-sd	  	float   	Illumina paired-end fragment sd
 
- --mp-frag-mean   	float   	Illumina mate-pair reads mean
+ 	--mp-frag-mean   	float   	Illumina mate-pair reads mean
  					optional --in case of paired-end read only assembly
 
- --mp-frag-sd     	float   	lumina mate-pair reads sd
+ 	--mp-frag-sd     	float   	lumina mate-pair reads sd
  					optional --in case of paired-end read only assembly
 							
 **Example: run masurca assembler**
 
-.. code-block:: none
 	
 	NOTE: currently running masurca assembler through the gabtk pipeline supports only one paired-end and (or)
 	only one mate-pair library. i.e multipe read libraries are not supported
@@ -526,12 +421,11 @@ masurca
 
 ray
 --------
-.. code-block:: none
 
- Mandetory Arguments
- --pre-process-reads str   	Choose [yes or no]
+ 	Mandetory Arguments
+ 	--pre-process-reads str   	Choose [yes or no]
 
- --seq-platforms	str   	Choose [
+ 	--seq-platforms	str   	Choose [
  				pe:	paired-end
 				pe-mp:	paired-end and mate-pair
 				pe-ont:	paired-end and nanopore
@@ -540,7 +434,6 @@ ray
 
 **Example: run ray assembler**
 
-.. code-block:: none
 
 	case 1: running ray with out read cleaning
 
@@ -557,12 +450,11 @@ ray
 idba
 ---------
 
-.. code-block:: none
 
- Mandetory Arguments
- --pre-process-reads	strs	Choose [yes or no]
+	 Mandetory Arguments
+	 --pre-process-reads	strs	Choose [yes or no]
 
- --seq-platforms	str   	Choose [
+ 	--seq-platforms	str   	Choose [
  				pe:	paired-end
 				pe-mp:	paired-end and mate-pair
 				pe-ont:	paired-end and nanopore
@@ -570,7 +462,6 @@ idba
 
 **Example: run idba assembler**
 
-.. code-block:: none
 
 	case 1: running idba with out read cleaning
 
@@ -587,12 +478,11 @@ idba
 abyss
 ---------
 
-.. code-block:: none
 
- Mandetory Arguments
- --pre-process-reads  str   Choose [yes or no]
+ 	Mandetory Arguments
+ 	--pre-process-reads  str   Choose [yes or no]
 
- --seq-platforms	str Choose [
+ 	--seq-platforms	str Choose [
  				pe:	paired-end
 				pe-mp:	paired-end and mate-pair
 				pe-ont:	paired-end and nanopore
@@ -600,7 +490,6 @@ abyss
 
 **Example: run abyss assembler**
 
-.. code-block:: none
 
 	case 1: running abyss with out read cleaning
 
@@ -615,56 +504,22 @@ abyss
 			--cleanFastq-long-read-mean-quality 70 \
 			--local-scheduler
 
-haslr
----------
-
-.. code-block:: none
-
- Mandetory Arguments
- --pre-process-reads  str   Choose [yes or no]
-
- --seq-platforms	str Choose [
- 				pe-ont: paired-end and nanopore
-				pe-pac: paired-end and pacbio]
-
-
-**Example: run haslr assembler**
-
-.. code-block:: none
-
-	case 1: running haslr with out read cleaning
-
-	benchmark.py haslr --pre-process-read no  --seq-platforms pe-pac --local-scheduler
-
-	case 2: running haslr with read cleaning parameters
-
-	benchmark.py haslr \
-			--pre-process-read yes \
-			--seq-platforms pe-pac \
-			--cleanFastq-min-average-quality 20 \
-			--cleanFastq-long-read-mean-quality 70 \
-			--local-scheduler
-
 soapdenovo
 -----------
 
-.. code-block:: none
+ 	Mandetory Arguments
+ 	--pre-process-reads  str   Choose [yes or no]
 
- Mandetory Arguments
- --pre-process-reads  str   Choose [yes or no]
-
- --seq-platforms      str   Choose [
+	--seq-platforms      str   Choose [
  				pe:	paired-end
 				pe-mp: paired-end and mate-pair]
 
- --max-read-len       int     Maximum read length
- --avg-pe-ins         float   paired-end reads average insert size
- --avg-me-ins	      float   mate-paired reads average insert size
- --min-contig-length  int     minimum contig length
+ 	--max-read-len       int     Maximum read length
+ 	--avg-pe-ins         float   paired-end reads average insert size
+ 	--avg-me-ins	      float   mate-paired reads average insert size
+ 	--min-contig-length  int     minimum contig length
 
 **Example: run soapdenovo assembler**
-
-.. code-block:: none
 
 	case 1: running soapdenovo with out read cleaning
 
@@ -686,25 +541,22 @@ soapdenovo
 dbg2olc
 --------
 
-.. code-block:: none
 
- Mandetory Arguments
- --pre-process-reads  str   	Choose [yes or no]
+ 	Mandetory Arguments
+ 	--pre-process-reads  str   	Choose [yes or no]
 
- --seq-platforms      str   	Choose [
+ 	--seq-platforms      str   	Choose [
  				ont: nanopore
  				pac: pacbio]
 
- Optional Arguments
- --dbg-assembler	  str   Choose [
+ 	Optional Arguments
+ 	--dbg-assembler	  str   Choose [
  				light: 	LightAssembler
  				sparse: SparseAssembler
  				minia:  MiniaAssembler]	
  				Default: sparse
 
 **Example: run dbg2olc assembler**
-
-.. code-block:: none
 
 	case 1: running dbg2olc with out read cleaning
 
@@ -725,19 +577,17 @@ smartdenovo
 ------------
 
 
-.. code-block:: none
+	 Mandetory Arguments
+	 --pre-process-reads	strs	Choose [yes or no]
 
- Mandetory Arguments
- --pre-process-reads	strs	Choose [yes or no]
-
- --seq-platform	str   	Choose [
+ 	--seq-platform	str   	Choose [
  				ont: nanopore
 				pac: pacbio]
- Optional Arguments
- --min-contig-size	int	Default: 500
+ 	Optional Arguments
+ 	--min-contig-size	int	Default: 500
 
 
- benchmark.py smartdenovo \
+ 	benchmark.py smartdenovo \
 			--pre-process-read yes \
 			--seq-platforms pac \
 			--cleanFastq-min-average-quality 20 \
@@ -746,21 +596,16 @@ smartdenovo
 flye
 -----
 
+	 Mandetory Arguments
+ 	--pre-process-reads	strs	Choose [yes or no]
 
-.. code-block:: none
-
- Mandetory Arguments
- --pre-process-reads	strs	Choose [yes or no]
-
- --seq-platforms	str   	Choose [
+	--seq-platforms	str   	Choose [
  				pacbio-raw: pacbio raw
 				pacbio-corr: pacbio corrected
 				nano-raw: nanopore raw
 				nano-corr: nanopore corrected]
 
 **Example: run flye assembler**
-
-.. code-block:: none
 
 	case 1: running flye with out read cleaning
 
@@ -778,12 +623,10 @@ canu
 ------
 
 
-.. code-block:: none
+	 Mandetory Arguments
+ 	--pre-process-reads	strs	Choose [yes or no]
 
- Mandetory Arguments
- --pre-process-reads	strs	Choose [yes or no]
-
- --seq-platforms	str   	Choose [
+ 	--seq-platforms	str   	Choose [
  				pacbio-raw: pacbio raw
 				pacbio-corr: pacbio corrected
 				nano-raw: nanopore raw
@@ -791,8 +634,6 @@ canu
  
 
 **Example: run canu assembler**
-
-.. code-block:: none
 
 	case 1: running canu with out read cleaning
 
@@ -809,18 +650,14 @@ mecat2
 ------
 
 
-.. code-block:: none
+	 Mandetory Arguments
+ 	--pre-process-reads	strs	Choose [yes or no]
 
- Mandetory Arguments
- --pre-process-reads	strs	Choose [yes or no]
-
- Optional Argument
- --seq-platform	str   	Default: pac
+ 	Optional Argument
+ 	--seq-platform	str   	Default: pac
  
 **Example: run mecat2 assembler**
 **Note: Read type must be pacbio**
-
-.. code-block:: none
 
 	case 1: running mecat2 with out read cleaning
 
@@ -835,18 +672,14 @@ necat
 -------
 
 
-.. code-block:: none
+	 Mandetory Arguments
+ 	--pre-process-reads		strs	Choose [yes or no]
 
- Mandetory Arguments
- --pre-process-reads		strs	Choose [yes or no]
-
- Optional Argument
- --seq-platform	str   	Default: ont
+ 	Optional Argument
+	--seq-platform	str   	Default: ont
  
 **Example: run necat assembler**
 **Note: Read type must be nanopore**
-
-.. code-block:: none
 
 	case 1: running necat with out read cleaning
 
@@ -861,19 +694,14 @@ necat
 abruijn
 ---------
 
+	 Mandetory Arguments
+ 	--pre-process-reads	strs	Choose [yes or no]
 
-.. code-block:: none
-
- Mandetory Arguments
- --pre-process-reads	strs	Choose [yes or no]
-
- --seq-platform	str   	Choose [
+ 	--seq-platform	str   	Choose [
  				pac: pacbio 
 				ont: nanopore]
 
 **Example: run abruijn assembler**
-
-.. code-block:: none
 
 	case 1: running abruijn with out read cleaning
 
@@ -891,18 +719,14 @@ wtdbg2
 --------
 
 
-.. code-block:: none
+	Mandetory Arguments
+ 	--pre-process-reads	strs	Choose [yes or no]
 
- Mandetory Arguments
- --pre-process-reads	strs	Choose [yes or no]
-
- --seq-platforms	str   	Choose [
+ 	--seq-platforms	str   	Choose [
  				pac: pacbio 
 				ont: nanopore]
 
 **Example: run abruijn assembler**
-
-.. code-block:: none
 
 	case 1: running wtdbg2 with out read cleaning
 
@@ -917,19 +741,15 @@ wtdbg2
 miniasm
 --------
 
+	 Mandetory Arguments
+ 	--pre-process-reads	strs	Choose [yes or no]
 
-.. code-block:: none
-
- Mandetory Arguments
- --pre-process-reads	strs	Choose [yes or no]
-
- --seq-platforms	str   	Choose [
+ 	--seq-platforms	str   	Choose [
  				pac: pacbio 
 				ont: nanopore]
 
 **Example: run abruijn assembler**
 
-.. code-block:: none
 
 	case 1: running miniasm with out read cleaning
 
@@ -945,15 +765,12 @@ miniasm
 falcon
 -------
 
+	 Mandetory Arguments
+ 	--pre-process-reads	strs	Choose [yes or no]
 
-.. code-block:: none
-
- Mandetory Arguments
- --pre-process-reads	strs	Choose [yes or no]
-
- --seq-platforms	str   	Choose [
+ 	--seq-platforms	str   	Choose [
  				nanopore
 				pacbio]
- Optional Arguments
- --min-contig-length	int	Default: 500
+ 	Optional Arguments
+ 	--min-contig-length	int	Default: 500
 
