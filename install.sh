@@ -226,6 +226,8 @@ fi
 #Install tools from conda
 conda env update --prefix $PREFIX --file $ENVFILE  --prune
 
+conda install -c bioconda -y kmergenie soapdenovo2
+
 conda create -n abruijn -c bioconda -y python=2.7 abruijn
 abruijn_dir="$InstallDir/envs/abruijn/bin"
 echo "export PATH=\"$abruijn_dir\":\$PATH" >> ~/.bashrc 
