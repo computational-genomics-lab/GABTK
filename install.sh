@@ -212,18 +212,6 @@ END
 #Add Prefix to env file
 echo "prefix: $PREFIX" >> $ENVFILE
 
-
-#cp -ar $UTILITY $PREFIX
-#utility_dir=$PREFIX/utility
-#chmod -R 755 $utility_dir
-#echo "export PATH=\$PATH:$utility_dir" >> ~/.bashrc
-
-#cp -ar $DEA_SCRIPTS $PREFIX
-#dea_scripts_dir=$PREFIX/deaRscripts
-#chmod -R 755 $dea_scripts_dir
-#echo "export PATH=\$PATH:$dea_scripts_dir" >> ~/.bashrc
-
-
 # Add Entry Point to the path
 if [[ $EntryPoint ]]; then
 
@@ -235,12 +223,8 @@ if [[ $EntryPoint ]]; then
     echo "export PATH=\"$(pwd)/Scripts\":\$PATH" >> ~/.bashrc
 fi
 
-
-
-
 #Install tools from conda
 conda env update --prefix $PREFIX --file $ENVFILE  --prune
-
 
 conda create -n abruijn -c bioconda -y python=2.7 abruijn
 abruijn_dir="$InstallDir/envs/abruijn/bin"
@@ -260,4 +244,3 @@ echo -e "\e[1;36m \t[1]\tRestart the terminal first.  \e[0m";2>&1 | tee -a $LOGF
 echo -e "\e[1;36m \t[2]\tIn the new terminal, source your .bashrc file using command: source ~/.bashrc  \e[0m"; 2>&1 | tee -a $LOGFILE
 echo -e "\e[1;36m \t[3]\tActivate conda environment using command: conda activate \e[0m"; 2>&1 | tee -a $LOGFILE
 echo -e "\e[1;36m Have a great day --STLab Team \e[0m"; 2>&1 | tee -a $LOGFILE
-
